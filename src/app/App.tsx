@@ -1,10 +1,11 @@
+import { HomePage } from 'src/pages';
 
-import './App.css'
+import './styles/index.css';
 
 export const App = (): JSX.Element =>  {
 
   return (
-    <div>App component</div>
+    <HomePage />
   )
 }
 
