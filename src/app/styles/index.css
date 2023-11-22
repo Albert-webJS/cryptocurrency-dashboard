@@ -1,5 +1,6 @@
 :root {
-  --main-color: #010E2C;
+  --main-text-color: #FFFFFF;
+  --main-background-color: #010E2C;
   box-sizing: border-box;
 }
 

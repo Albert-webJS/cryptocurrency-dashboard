@@ -1,10 +1,10 @@
-import { NavbarStyled } from './Navbar.styled';
+import styles from './Navbar.module.css';
 
 export const Navbar = () => {
     return (
-        <NavbarStyled>
-            <li>Navbar</li>
-            <li>Navbar 2</li>
-        </NavbarStyled>
+        <nav className={styles.navigation}>
+            <li>dashboard</li>
+            <li>settings</li>
+        </nav>
     )
 }
