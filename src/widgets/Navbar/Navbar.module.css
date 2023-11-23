@@ -1,3 +1,9 @@
 .navigation {
+
+}
+
+.list {
     display: flex;
+    column-gap: 40px;
+    list-style-type: none;
 }

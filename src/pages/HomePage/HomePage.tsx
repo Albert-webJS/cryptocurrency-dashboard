@@ -1,15 +1,11 @@
 import { Header } from "src/layout";
-import { Logo, Wrapper } from "src/shared";
-import { Navbar } from "src/widgets";
+import { Wrapper } from "src/shared";
 
 
 export const HomePage = (): JSX.Element => {
     return (
         <Wrapper>
-            <Header>
-                <Logo />
-                <Navbar/>
-            </Header>
+            <Header />
         </Wrapper>
     )
 }

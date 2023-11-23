@@ -1,4 +1,5 @@
 :root {
+  --active-link-shadow: #03FF03;
   --main-text-color: #FFFFFF;
   --main-background-color: #010E2C;
   box-sizing: border-box;
