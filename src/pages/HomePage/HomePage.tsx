@@ -9,6 +9,7 @@ export const HomePage = (): JSX.Element => {
     return (
         <Wrapper>
             <Header />
+            <CoinGrid favorites/>
             <CoinGrid/>
         </Wrapper>
     )
