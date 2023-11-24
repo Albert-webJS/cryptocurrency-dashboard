@@ -1,7 +1,9 @@
 import axios from 'axios';
 import configuration from './configuration.json';
 
-const { key, domain } = configuration;
+export const domain = configuration.domain
+export const key = configuration.key
+export const srcImage = configuration.srcImage
 
 export const instance = axios.create({
     baseURL: domain,

@@ -13,7 +13,6 @@ export interface ResponseData {
     DISPLAY: Display
     RAW: Raw
 }
-
 export interface CoinInfo {
     Algorithm: string
     AssetLaunchDate: string
@@ -33,12 +32,10 @@ export interface CoinInfo {
     Type: number
     Url: string
 }
-
   
 export interface Rating {
     Weiss: Weiss
 }
-  
 export interface Weiss {
     MarketPerformanceRating: string
     Rating: string
@@ -46,14 +43,11 @@ export interface Weiss {
 }
 
 export interface Display {
-    USD: ReducedUsd
-}
-
-  
-export interface Raw {
     USD: Usd
 }
-  
+export interface Raw {
+    USD: ReducedUsd
+}
 export interface Usd {
     CHANGE24HOUR: number
     CHANGEDAY: number

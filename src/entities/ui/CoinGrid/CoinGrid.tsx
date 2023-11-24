@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 
 import { ResponseData, getCoinList } from "src/shared/api";
+import { Loader } from "src/shared";
+
+import { CoinCard } from "../CoinCard/CoinCard";
 
 import styles from './CoinGrid.module.css';
-import { CoinCard } from "src/shared";
 
 export const CoinGrid = (): JSX.Element => {
     const [data, setData] = useState<ResponseData[] | null>(null);
@@ -22,6 +24,11 @@ export const CoinGrid = (): JSX.Element => {
     }, [])
 
     return (
-        <main className={styles.grid}>{data?.map(({ CoinInfo }) => (<CoinCard key={CoinInfo.Id}>{CoinInfo.Name}</CoinCard>))}</main>
+        <main className={styles.grid}>
+            {data ? (data?.map(coin => (
+                    <CoinCard key={coin.CoinInfo.Id} coin={coin}/>
+                ))) : (<Loader size="small"/>)
+             }
+        </main>
     )
-}
+ }

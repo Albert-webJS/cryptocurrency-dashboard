@@ -1,8 +1,15 @@
 .grid {
     width: 100%;
     max-width: 1110px;
-    margin-inline: auto;
+    margin-top: 40px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 15px;
+}
+
+.grid:has(div[datatype="loader"]) {
+    display: flex;
+    min-height: 70vh;
+    align-items: center;
+    justify-content: center;
 }
