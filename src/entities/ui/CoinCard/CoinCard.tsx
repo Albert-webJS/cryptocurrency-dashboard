@@ -1,7 +1,8 @@
 import { DetailedHTMLProps, FC, HTMLAttributes } from "react"
 
-import { CoinImage } from "src/shared";
 import { ResponseData, srcImage } from "src/shared/api";
+
+import { CoinImage } from "../CoinImage/CoinImage";
 
 import cn from 'classnames';
 import styles from './CoinCard.module.css';
