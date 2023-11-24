@@ -1,32 +1,20 @@
-import { DetailedHTMLProps, HTMLAttributes, useEffect, useState } from "react";
+import { DetailedHTMLProps, HTMLAttributes } from "react";
 
-import { ResponseData, getCoinList } from "src/shared/api";
+import { ResponseData, useGetCoinListQeury } from "src/shared/api";
 import { Loader } from "src/shared";
 
 import { CoinCard } from "../CoinCard/CoinCard";
 
 import cn from 'classnames';
 import styles from './CoinGrid.module.css';
+import { observer } from "mobx-react-lite";
 
 interface CoinGridProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
     favorites?: boolean
 }
 
-export const CoinGrid = ({ className, favorites, ...props }: CoinGridProps): JSX.Element => {
-    const [coinList, setCoinList] = useState<ResponseData[] | null>(null);
-
-    useEffect(() => {
-        const fetchData = async (): Promise<void> => {
-            try {
-                const result = await getCoinList(100);
-                setCoinList(result.Data)
-            } catch (error) {
-                console.error(error)
-            }
-        }
-
-        fetchData()
-    }, [])
+export const CoinGrid = observer(({ className, favorites, ...props }: CoinGridProps): JSX.Element => {
+    const { data } = useGetCoinListQeury() 
 
     const display = (coinList: ResponseData[] | null, section?: boolean) => {
         if (!coinList) return
@@ -34,9 +22,11 @@ export const CoinGrid = ({ className, favorites, ...props }: CoinGridProps): JSX
         return Object.entries(coinList).map(([, coin]) => coin).slice(0, section ? 10 : 100)
     }
 
+    console.log(data)
+
     return (
         <main className={cn(styles.grid, className)} {...props}>
-            {coinList ? (display(coinList, favorites)?.map(coin => (
+            {data ? (display(data.Data, favorites)?.map(coin => (
                     <CoinCard className={cn({
                         [styles.favorites]: favorites
                     })} key={coin.CoinInfo.Id} coin={coin}/>
@@ -44,4 +34,4 @@ export const CoinGrid = ({ className, favorites, ...props }: CoinGridProps): JSX
              }
         </main>
     )
- }
+ })
