@@ -1,11 +1,17 @@
-import { HomePage } from 'src/pages';
+import { Wrapper } from 'src/shared';
+import { Header } from 'src/layout';
+
+import { AppRouter } from './provider';
 
 import './styles/index.css';
 
 export const App = (): JSX.Element =>  {
 
   return (
-    <HomePage />
+    <Wrapper>
+      <Header />
+      <AppRouter />
+    </Wrapper>
   )
 }
 

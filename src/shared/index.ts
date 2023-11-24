@@ -5,3 +5,5 @@ export { CoinCard } from './ui/CoinCard/CoinCard';
 export { Loader } from './ui/Loader/Loader';
 export { CoinImage } from './ui/CoinImage/CoinImage'
 export { Logo } from './ui/Logo/Logo';
+
+export { routerConfig } from './config/routerConfig'

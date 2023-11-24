@@ -14,15 +14,13 @@ interface CoinGridProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>
 }
 
 export const CoinGrid = observer(({ className, favorites, ...props }: CoinGridProps): JSX.Element => {
-    const { data } = useGetCoinListQeury() 
+    const { data } = useGetCoinListQeury(100) 
 
     const display = (coinList: ResponseData[] | null, section?: boolean) => {
         if (!coinList) return
 
         return Object.entries(coinList).map(([, coin]) => coin).slice(0, section ? 10 : 100)
     }
-
-    console.log(data)
 
     return (
         <main className={cn(styles.grid, className)} {...props}>
