@@ -1,14 +1,9 @@
-
-import { CoinGrid } from "src/entities";
-
-
 export const HomePage = (): JSX.Element => {
  
     return (
-      <>
-        <CoinGrid favorites/>
-        <CoinGrid/>
-      </>
+      <div>
+        <h1>Home page</h1>
+      </div >
     )
 }
 

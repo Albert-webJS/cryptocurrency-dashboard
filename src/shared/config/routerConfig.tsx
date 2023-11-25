@@ -1,15 +1,17 @@
 import { RouteProps } from "react-router-dom"
-import { HomePage, NotFoundPage } from 'src/pages'
+import { HomePage, NotFoundPage, SettingsPage } from 'src/pages'
 
 
 export enum AppRouters {
     HOME = 'home',
-    NOT_FOUND = 'notFound'
+    SETTINGS = 'settings',
+    NOT_FOUND = 'notFound',
 }
 
 export const RoutePath: Record<AppRouters, string> = {
     [AppRouters.HOME]: "/",
-    [AppRouters.NOT_FOUND]: "*"
+    [AppRouters.SETTINGS]: "/settings",
+    [AppRouters.NOT_FOUND]: "*",
 }
 
 export const routerConfig: Record<AppRouters, RouteProps> = {
@@ -20,5 +22,10 @@ export const routerConfig: Record<AppRouters, RouteProps> = {
     [AppRouters.NOT_FOUND]: {
         path: RoutePath.notFound,
         element: <NotFoundPage />
+    },
+    [AppRouters.SETTINGS]: {
+        path: RoutePath.settings,
+        element: <SettingsPage />
+
     }
 }
