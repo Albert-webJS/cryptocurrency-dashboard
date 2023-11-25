@@ -7,7 +7,7 @@ export const Navbar = () => {
         <nav className={styles.navigation}>
             <ul className={styles.list}>
                 <li className={styles.listItem}>
-                    <AppLink active to='/'>dashboard</AppLink>
+                    <AppLink active to='/dashboard'>dashboard</AppLink>
                 </li>
                 <li className={styles.listItem}>
                     <AppLink to='/settings'>settings</AppLink>

@@ -22,6 +22,8 @@ export const CoinGrid = observer(({ className, favorites, ...props }: CoinGridPr
         return Object.entries(coinList).map(([, coin]) => coin).slice(0, section ? 10 : 100)
     }
 
+    console.log('data => ', data)
+
     return (
         <main className={cn(styles.grid, className)} {...props}>
             {data ? (display(data.Data, favorites)?.map(coin => (

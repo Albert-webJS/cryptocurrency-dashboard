@@ -16,6 +16,7 @@ export const useGetCoinListQeury = (
         return response.data;
     },
     {
+      staleTime: Infinity,
       ...options
     }
   );
