@@ -1,37 +1,35 @@
-import { DetailedHTMLProps, HTMLAttributes } from "react";
+import { DetailedHTMLProps, HTMLAttributes, useEffect } from "react";
+import { observer } from "mobx-react-lite";
 
-import { ResponseData, useGetCoinListQeury } from "src/shared/api";
+import { useGetCoinListQeury } from "src/shared/api";
 import { Loader } from "src/shared";
+import { store } from "src/shared/store";
 
-import { CoinCard } from "../CoinCard/CoinCard";
+import { TopCoinList } from "../TopCoinList/TopCoinList";
+import { CoinList } from "../CoinList/CoinList";
 
 import cn from 'classnames';
 import styles from './CoinGrid.module.css';
-import { observer } from "mobx-react-lite";
 
-interface CoinGridProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-    favorites?: boolean
-}
+interface CoinGridProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
-export const CoinGrid = observer(({ className, favorites, ...props }: CoinGridProps): JSX.Element => {
-    const { data } = useGetCoinListQeury(100) 
+export const CoinGrid = observer(({ className, ...props }: CoinGridProps): JSX.Element => {
+    const { data, error, isLoading } = useGetCoinListQeury(100) 
 
-    const display = (coinList: ResponseData[] | null, section?: boolean) => {
-        if (!coinList) return
-
-        return Object.entries(coinList).map(([, coin]) => coin).slice(0, section ? 10 : 100)
-    }
-
-    console.log('data => ', data)
+    useEffect(() => {
+      if (data) {
+          store.addCoinList(data.Data);
+      }
+    }, [data]);
 
     return (
-        <main className={cn(styles.grid, className)} {...props}>
-            {data ? (display(data.Data, favorites)?.map(coin => (
-                    <CoinCard className={cn({
-                        [styles.favorites]: favorites
-                    })} key={coin.CoinInfo.Id} coin={coin}/>
-                ))) : (<Loader size="large"/>)
-             }
+        <main className={cn(styles.container, className)} {...props}>
+            {isLoading && <Loader size="large" />}
+            {error && <div>"Failed to fetch data"</div>}
+            <TopCoinList />
+            <div className={styles.grid}>
+                {data && !isLoading && !error && <CoinList coinList={store.coinList} />}
+            </div>
         </main>
     )
  })
