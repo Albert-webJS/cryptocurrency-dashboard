@@ -1,36 +1,34 @@
 .card {
-    background-color: var(--light-blue-background);
-    box-shadow: var(--box-shadow);
-
-    padding: 10px;
-    text-align: center;
+	background-color: var(--light-blue-background);
+	box-shadow: var(--box-shadow);
+	padding: 10px;
+	text-align: center;
 }
 
 .card:hover {
-    cursor: pointer;
-    box-shadow: 0px 0px 5px 1px #00d0d2;
+	cursor: pointer;
+	box-shadow: 0 0 5px 1px #00D0D2;
 }
 
 .favorites:hover {
-    box-shadow: 0px 0px 5px 1px #d2006f;
+	box-shadow: 0 0 5px 1px #D2006F;
 }
 
 .coinHeader {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
 }
 
 .coinName {
-    filter: drop-shadow(0px 0px 2px #ffff00);
+	filter: drop-shadow(0 0 2px #FF0);
 }
 
 .price {
-    font-size: 0.8em;
-    color: #58d5e9;
+	font-size: 0.8em;
+	color: #58D5E9;
 }
 
 .coinImage {
-    margin: 0 auto;
+	margin: 0 auto;
 }
-
