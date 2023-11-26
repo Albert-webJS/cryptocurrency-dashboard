@@ -2,36 +2,41 @@ import { action, makeObservable, observable } from 'mobx';
 import { ResponseData } from '../api';
 
 class Store {
-    coinList: ResponseData[] = [];
-    topCoinList: ResponseData[] = []
+	coinCollection: ResponseData[] = [];
+	topCoinCollection: ResponseData[] = [];
 
-    constructor () {
-       makeObservable(this, {
-           coinList: observable,
-           topCoinList: observable,
-           addCoinList: action,
-           addTopCoinList: action,
-           removeCoin: action
+	constructor() {
+		makeObservable(this, {
+			coinCollection: observable,
+			topCoinCollection: observable,
+			appendCoinCollection: action,
+			appendCoin: action,
+			removeCoin: action,
+		});
+	}
 
-       })
-    }
+	appendCoinCollection(list: ResponseData[] | undefined) {
+		if (!list) return;
 
-    addCoinList(list: ResponseData[] |  undefined) {
-       if (!list) return;
+		this.coinCollection.push(...list);
+	}
 
-       this.coinList.push(...list)
-    }
+	appendCoin(coin: ResponseData | undefined, isFavorites?: boolean) {
+		if (!coin) return;
 
-    addTopCoinList(coin: ResponseData | undefined) {
-        if (!coin) return;
+		if (!isFavorites) this.coinCollection.push(coin);
+		else {
+			this.topCoinCollection.push(coin);
+		}
+	}
 
-        this.topCoinList.push(coin)
-    }
-
-    removeCoin(id: string) {
-        this.coinList = this.coinList.filter(coin => coin.CoinInfo.Id !== id)
-    }
-
+	removeCoin(id: string, isFavorites: boolean = false) {
+		if (!isFavorites)
+			this.coinCollection = this.coinCollection.filter((coin) => coin.CoinInfo.Id !== id);
+		else {
+			this.topCoinCollection = this.topCoinCollection.filter((coin) => coin.CoinInfo.Id !== id);
+		}
+	}
 }
 
-export const store = new Store()
+export const store = new Store();
