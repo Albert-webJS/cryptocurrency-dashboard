@@ -11,7 +11,6 @@ export const TopCoinList = observer((): JSX.Element => {
 		const coin = store.topCoinCollection.find((coin) => coin.CoinInfo.Id === id);
 		store.removeCoin(id, true);
 		store.appendCoin(coin);
-		console.log(store.coinCollection.length);
 	};
 
 	return (

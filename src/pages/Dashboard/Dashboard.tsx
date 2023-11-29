@@ -5,7 +5,7 @@ import { store } from 'src/shared/store';
 export const Dashboard = observer((): JSX.Element => {
 	return (
 		<div>
-			{store.topCoinList.map((coin) => (
+			{store.topCoinCollection.map((coin) => (
 				<CoinCard key={coin.CoinInfo.Id} coin={coin} />
 			))}
 		</div>

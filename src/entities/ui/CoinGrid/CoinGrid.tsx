@@ -2,7 +2,7 @@ import { DetailedHTMLProps, HTMLAttributes, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 
 import { useGetCoinListQeury } from 'src/shared/api';
-import { Loader } from 'src/shared';
+import { AppLink, Loader } from 'src/shared';
 import { store } from 'src/shared/store';
 
 import { TopCoinList } from '../TopCoinList/TopCoinList';
@@ -17,7 +17,7 @@ export const CoinGrid = observer(({ className, ...props }: CoinGridProps): JSX.E
 	const { data, error, isLoading } = useGetCoinListQeury(100);
 
 	useEffect(() => {
-		if (data) {
+		if (data && store.coinCollection.length === 0) {
 			store.appendCoinCollection(data.Data);
 		}
 	}, [data]);
@@ -27,6 +27,12 @@ export const CoinGrid = observer(({ className, ...props }: CoinGridProps): JSX.E
 			{isLoading && <Loader size="large" />}
 			{error && <div>"Failed to fetch data"</div>}
 			<TopCoinList />
+			<div className={styles.navigation}>
+				<AppLink className={styles.confirm} to="/dashboard">
+					confirm favorites
+				</AppLink>
+				<input className={styles.searchInput} type="text" placeholder="search coin" />
+			</div>
 			<div className={styles.grid}>
 				{data && !isLoading && !error && <CoinList coinList={store.coinCollection} />}
 			</div>
