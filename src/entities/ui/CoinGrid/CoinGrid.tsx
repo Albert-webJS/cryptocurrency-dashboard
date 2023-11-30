@@ -28,7 +28,12 @@ export const CoinGrid = observer(({ className, ...props }: CoinGridProps): JSX.E
 			{error && <div>"Failed to fetch data"</div>}
 			<TopCoinList />
 			<div className={styles.navigation}>
-				<AppLink className={styles.confirm} to="/dashboard">
+				<AppLink
+					className={cn(styles.confirm, {
+						[styles.active]: store.isTopCollectionFull,
+					})}
+					to="/dashboard"
+				>
 					confirm favorites
 				</AppLink>
 				<input className={styles.searchInput} type="text" placeholder="search coin" />

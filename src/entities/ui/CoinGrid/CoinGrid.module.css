@@ -13,7 +13,7 @@
 	gap: 15px;
 }
 
-.grid:has(div[datatype='loader']) {
+.grid:has(div[datatype="loader"]) {
 	display: flex;
 	min-height: 70vh;
 	align-items: center;
@@ -21,7 +21,7 @@
 }
 
 .favorites:hover {
-	box-shadow: 0 0 5px 1px #e83509;
+	box-shadow: 0 0 5px 1px #E83509;
 }
 
 .navigation {
@@ -38,6 +38,21 @@
 	height: 30px;
 	text-align: center;
 	line-height: 30px;
+}
+
+.active {
+	box-shadow: 0 0 5px 1px var(--active-link-shadow);
+	animation: shadow-pulse 0.8s infinite alternate;
+}
+
+@keyframes shadow-pulse {
+	from {
+		box-shadow: 0 0 5px 1px var(--active-link-shadow);
+	}
+
+	to {
+		box-shadow: 0 0 8px 2px var(--active-link-shadow);
+	}
 }
 
 .searchInput {
